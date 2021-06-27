@@ -1,17 +1,27 @@
-static int ft_
+static int ft_sdi(t_opts *opts, va_list ap, size_t *counter)
+{
+	char *strnum;
+
+	if (opts->type == 's')
+	{
+		strnum = va_arg(ap, char *);
+		*counter += ft_strlen(strnum);
+		ft_printstr(strnum);
+	}
+	else if (opts->type == 'd' || opts->type == 'i')
+	{
+		strnum = ft_itoa(va_arg(ap, int));
+		*counter += ft_strlen(strnum);
+		ft_printstr(strnum);
+		free(strnum);
+	}
+}
 
 static int	ft_xpuX(t_opts *opts, va_list ap, size_t *counter)
 {
 	char			*strnum;
 
-	if (opts->type == 'x' || opts->type == 'X')
-	{
-		if (opts->type == 'x')
-			ft_decToHex(va_arg(ap, unsigned int), "0123456789abcdef", counter);
-		else if (opts->type == 'X')
-			ft_decToHex(va_arg(ap, unsigned int), "0123456789ABCDEF", counter);
-	}
-	else if (opts->type == 'p')
+	if (opts->type == 'p')
 		ft_printP(va_arg(ap, void *), "0123456789abcdef", counter);
 	else if (opts->type == 'u')
 	{
@@ -27,24 +37,19 @@ static int	ft_csdi(t_opts *opts, va_list ap, size_t *counter)
 {
 	char	*strnum;
 
-	if (opts->type == 's')
-	{
-		strnum = va_arg(ap, char *);
-		*counter += ft_strlen(strnum);
-		ft_printstr(strnum);
-	}
-	else if (opts->type == 'c')
+	if (opts->type == 'c')
 	{
 		*counter += 1;
 		ft_putchar_fd(va_arg(ap, int), 1);
 	}
-	else if (opts->type == 'd' || opts->type == 'i')
+	else if (opts->type == 'x' || opts->type == 'X')
 	{
-		strnum = ft_itoa(va_arg(ap, int));
-		*counter += ft_strlen(strnum);
-		ft_printstr(strnum);
-		free(strnum);
+		if (opts->type == 'x')
+			ft_decToHex(va_arg(ap, unsigned int), "0123456789abcdef", counter);
+		else if (opts->type == 'X')
+			ft_decToHex(va_arg(ap, unsigned int), "0123456789ABCDEF", counter);
 	}
+
 }
 
 int	ft_printf(const char *format, ...)
