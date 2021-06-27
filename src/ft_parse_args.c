@@ -1,10 +1,3 @@
-#include "../includes/ft_printf.h"
-#include "string.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <stdarg.h>
-
 //если он видит лишний аргумент, он пишет все оставшееся текстом ->
 //printf("str: %-0**i\n"); ->
 //out: *i
@@ -68,7 +61,7 @@ static int	ft_parse_precision(char **args, va_list ap)
 	return (prec);
 }
 
-t_opts	*ft_parse_args(char **args, va_list ap)
+t_opts	*ft_parse_args(const char **args, va_list ap)
 {
 	t_opts	*opts;
 	char	opt;
@@ -86,25 +79,4 @@ t_opts	*ft_parse_args(char **args, va_list ap)
 	if (isalpha(**args))
 		opts->type = **args; //ptr -> type
 	return (opts);
-}
-
-int	ft_printf_lol(char *format, ...)
-{
-	va_list ap;
-	va_start(ap, format);
-	t_opts *opts;
-
-	while (*format)
-	{
-		if (*format == '%')
-		{
-			format++;
-			opts = ft_parse_args(&format, ap);
-			continue;
-		}
-		putchar(*format);
-		format++;
-	}
-	va_end(ap);
-	return (0);
 }

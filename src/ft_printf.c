@@ -1,10 +1,10 @@
+static int ft_
+
 static int	ft_xpuX(t_opts *opts, va_list ap, size_t *counter)
 {
 	char			*strnum;
 
-	if (opts->type == '%')
-		write(1, "%", 1);
-	else if (opts->type == 'x' || opts->type == 'X')
+	if (opts->type == 'x' || opts->type == 'X')
 	{
 		if (opts->type == 'x')
 			ft_decToHex(va_arg(ap, unsigned int), "0123456789abcdef", counter);
@@ -20,9 +20,10 @@ static int	ft_xpuX(t_opts *opts, va_list ap, size_t *counter)
 		ft_printstr(strnum);
 		free(strnum);
 	}
+	return (1);
 }
 
-static void	ft_csdi(t_opts *opts, va_list ap, size_t *counter)
+static int	ft_csdi(t_opts *opts, va_list ap, size_t *counter)
 {
 	char	*strnum;
 
@@ -60,16 +61,16 @@ int	ft_printf(const char *format, ...)
 		{
 			format++;
 			opts = ft_parse_args(&format, ap);
-			ft_xpuX(opts, ap, &counter);
-			ft_csdi(opts, ap, &counter);
+			if (!ft_xpuX(opts, ap, &counter) && !ft_csdi(opts, ap, &counter))
+				ft_err_format();
 			free(opts);
 		}
 		else
 		{
 			write(1, format, 1);
 			counter++;
+			format++;
 		}
-		format++;
 	}
 	va_end(ap);
 	return (counter);
