@@ -1,29 +1,77 @@
-#include "ft_printf.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include "../utils/utils.h"
+static int ft_
 
-
-//Не забудь, нужно счиать еще и символы
-int	ft_printf(char *format, ...)
+static int	ft_xpuX(t_opts *opts, va_list ap, size_t *counter)
 {
-	va_list ap;
-	t_dict **hashtable;
-	va_start(ap, format);
+	char			*strnum;
 
-	hashtable = ft_dict_setup();
-	while (format)
+	if (opts->type == 'x' || opts->type == 'X')
 	{
-		if (*format == '%')
-			ft_pars_args(format++, ap);
-		//else
-			//ft_putchar(*format);
+		if (opts->type == 'x')
+			ft_decToHex(va_arg(ap, unsigned int), "0123456789abcdef", counter);
+		else if (opts->type == 'X')
+			ft_decToHex(va_arg(ap, unsigned int), "0123456789ABCDEF", counter);
 	}
-	va_end(ap);
-	return (0);
+	else if (opts->type == 'p')
+		ft_printP(va_arg(ap, void *), "0123456789abcdef", counter);
+	else if (opts->type == 'u')
+	{
+		strnum = ft_uItoa(va_arg(ap, unsigned int));
+		*counter += ft_strlen(strnum);
+		ft_printstr(strnum);
+		free(strnum);
+	}
+	return (1);
 }
 
-int main(void)
+static int	ft_csdi(t_opts *opts, va_list ap, size_t *counter)
 {
-	ft_printf("%0-*.10i", 5, 6);
+	char	*strnum;
+
+	if (opts->type == 's')
+	{
+		strnum = va_arg(ap, char *);
+		*counter += ft_strlen(strnum);
+		ft_printstr(strnum);
+	}
+	else if (opts->type == 'c')
+	{
+		*counter += 1;
+		ft_putchar_fd(va_arg(ap, int), 1);
+	}
+	else if (opts->type == 'd' || opts->type == 'i')
+	{
+		strnum = ft_itoa(va_arg(ap, int));
+		*counter += ft_strlen(strnum);
+		ft_printstr(strnum);
+		free(strnum);
+	}
+}
+
+int	ft_printf(const char *format, ...)
+{
+	va_list	ap;
+	size_t	counter;
+	t_opts	*opts;
+
+	counter = 0;
+	va_start(ap, format);
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			opts = ft_parse_args(&format, ap);
+			if (!ft_xpuX(opts, ap, &counter) && !ft_csdi(opts, ap, &counter))
+				ft_err_format();
+			free(opts);
+		}
+		else
+		{
+			write(1, format, 1);
+			counter++;
+			format++;
+		}
+	}
+	va_end(ap);
+	return (counter);
 }
