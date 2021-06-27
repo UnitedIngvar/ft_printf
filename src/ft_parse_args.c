@@ -11,7 +11,6 @@
 //должен оставнавливать указатель там, где произошло говно какое-то
 static void* ft_parse_value(char type, va_list ap, void **o_value)
 {
-	//cspdiuxX%
 	if (type == 'i' || type == 'd')
 		memset(o_value, va_arg(ap, int), sizeof(int));
 	else if (type == 'u' || type == 'x')
@@ -21,7 +20,7 @@ static void* ft_parse_value(char type, va_list ap, void **o_value)
 	else if (type == 'c')
 		memset(o_value, va_arg(ap, int), sizeof(char));
 	else if (type == 'p')
-		memset(o_value, va_arg(ap, int), sizeof(int));
+		memset(o_value, va_arg(ap, int), sizeof(void *));
 }
 
 static char ft_parse_flag(char **args)

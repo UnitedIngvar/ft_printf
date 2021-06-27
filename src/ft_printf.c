@@ -61,7 +61,7 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			ft_parse_args(&format, ap);
+			opts = ft_parse_args(&format, ap);
 			ft_xpuX(*format, ap, &counter);
 			ft_csdi(*format, ap, &counter);
 		}
