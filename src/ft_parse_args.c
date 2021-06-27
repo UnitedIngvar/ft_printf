@@ -8,7 +8,7 @@ static char ft_parse_flag(char **args)
 	char	flag;
 
 	flag = '\0';
-	while (isspace(**args))
+	while (ft_isspace(**args))
 		(*args)++;
 	if (**args == '0')
 	{
@@ -16,7 +16,7 @@ static char ft_parse_flag(char **args)
 		while (**args == '0')
 			(*args)++;
 	}
-	while (isspace(**args))
+	while (ft_isspace(**args))
 		(*args)++;
 	if (**args == '-')
 	{
@@ -76,7 +76,6 @@ t_opts	*ft_parse_args(const char **args, va_list ap)
 	if (opts->width < 0)
 		opts->flag = '-';
 	opts->precision = ft_parse_precision(args, ap);
-	if (isalpha(**args))
-		opts->type = **args; //ptr -> type
+	opts->type = **args; //ptr -> type
 	return (opts);
 }
