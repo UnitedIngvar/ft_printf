@@ -1,8 +1,8 @@
-SRCS		=		src/ft_printf.c src/ft_strfuncs.c src/ft_uItoa.c
+SRCS		=		src/ft_printf.c src/ft_strfuncs.c src/ft_uItoa.c src/ft_parse.args.c
 
 OBJS		=		${SRCS:.c=.o}
 
-HEADER		=		includes/ft_print.h
+HEADER		=		includes/ft_printf.h
 
 NAME		=		libftprintf.a
 
@@ -19,7 +19,7 @@ LIBFT		=		libft
 ARFLAGS		=		rc
 
 %o: %c
-		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+		${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -include ${HEADER}
 
 $(NAME):		${LIBFT} ${OBJS}
 				ar rc libft/libft.a ${OBJS}
@@ -32,7 +32,7 @@ all:			$(NAME)
 clean:	
 		${RM} ${OBJS} ${NAME}
 
-$(LIBFT):
+$(LIBFT): 		$(LIBFT)
 				make -C libft
 
 .PHONY: all clean fclean re $(LIBFT)

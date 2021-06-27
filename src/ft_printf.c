@@ -1,5 +1,3 @@
-#include "../includes/ft_printf.h"
-
 static int	ft_xpuX(t_opts *opts, va_list ap, size_t *counter)
 {
 	char			*strnum;

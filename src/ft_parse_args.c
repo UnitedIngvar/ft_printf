@@ -1,4 +1,3 @@
-#include "ft_printf.h"
 #include "string.h"
 #include <stdio.h>
 #include <stdlib.h>
