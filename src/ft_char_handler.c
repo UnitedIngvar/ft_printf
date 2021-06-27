@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	ft_char_handler(char *c)
+void	ft_char_handler(char *c, t_opts opts)
 {
-	write(1, c, 1);
+
 }

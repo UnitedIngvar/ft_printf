@@ -2,8 +2,11 @@
 
 int	main(void)
 {
-	char	lel = 'b';
+	char	*lel = "bs";
+	int	b = 109;
 
-	printf("suka blyat: %0*.*c\n", 10, 10, lel);
+	printf("str: %i\n", lel);
+	printf("str: %s\n");
+	printf("str: %s\n");
 	return (0);
 }

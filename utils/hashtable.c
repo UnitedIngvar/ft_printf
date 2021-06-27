@@ -2,7 +2,7 @@
 #include "../src/ft_printf.h"
 
 /* hash: form hash value for string s */
-unsigned	hash(char *s)
+static unsigned	hash(char *s)
 {
 	unsigned	hashval;
 	for (hashval = 0; *s != '\0'; s++)
@@ -35,7 +35,7 @@ t_dict *install(char *name, void (*func_defn)(char *), t_dict **hashtab)
 	if (np == NULL)
 	{
 		np = (t_dict *)malloc(sizeof(*np));
-		if(np == NULL)
+		if (np == NULL)
 			return (NULL);
 		np->name = strdup(name);
 		if (np->name == NULL)
