@@ -12,9 +12,9 @@
 static void* ft_parse_value(char type, va_list ap, void **o_value)
 {
 	//cspdiuxX%
-	if (type == 'i' || type == 'd' || type == 'x')
+	if (type == 'i' || type == 'd')
 		memset(o_value, va_arg(ap, int), sizeof(int));
-	else if (type == 'u')
+	else if (type == 'u' || type == 'x')
 		memset(o_value, va_arg(ap, unsigned int), sizeof(unsigned int));
 	else if (type == 's')
 		memset(o_value, va_arg(ap, int), sizeof(char *));
@@ -100,31 +100,4 @@ t_opts	*ft_parse_args(char **args, va_list ap)
 		opts->type = **args; //ptr -> type
 	ft_parse_value(opts->type, ap, &(opts->value));
 	return (opts);
-}
-
-int	ft_printf(char *format, ...)
-{
-	va_list ap;
-	va_start(ap, format);
-	t_opts *opts;
-
-	while (format)
-	{
-		if (*format == '%')
-		{
-			format++;
-			opts = ft_parse_args(&format, ap);
-		}
-		else
-			putchar(*format);
-	}
-	printf("lolool");
-	printf("%s", opts->value);
-	va_end(ap);
-	return (0);
-}
-
-int main (void)
-{
-	ft_printf("%s*", "lol");
 }
