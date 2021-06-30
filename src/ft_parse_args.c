@@ -3,23 +3,19 @@ static char	ft_parse_flag(const char **args)
 	char	flag;
 
 	flag = '\0';
-	while (ft_isspace(**args))
-		(*args)++;
 	if (**args == '0')
 	{
 		flag = '0';
 		while (**args == '0')
 			(*args)++;
 	}
-	while (ft_isspace(**args))
-		(*args)++;
 	if (**args == '-')
 	{
 		flag = '-';
 		while (**args == '-')
 			(*args)++;
 	}
-	while (**args == '-' || **args == '0' || ft_isspace(**args))
+	while (**args == '-' || **args == '0')
 		(*args)++;
 	return (flag);
 }
@@ -61,6 +57,8 @@ t_opts	*ft_parse_args(const char **args, va_list ap)
 	t_opts	*opts;
 
 	opts = (t_opts*)malloc(sizeof(t_opts));
+	if (!opts)
+		return (NULL);
 	opts->flag = ft_parse_flag(args);
 	opts->width = ft_parse_width(args, ap);
 	if (opts->width < 0)
