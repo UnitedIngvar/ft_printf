@@ -1,9 +1,4 @@
-//если он видит лишний аргумент, он пишет все оставшееся текстом ->
-//printf("str: %-0**i\n"); ->
-//out: *i
-//должен оставнавливать указатель там, где произошло говно какое-то
-
-static char ft_parse_flag(char **args)
+static char	ft_parse_flag(const char **args)
 {
 	char	flag;
 
@@ -24,39 +19,39 @@ static char ft_parse_flag(char **args)
 		while (**args == '-')
 			(*args)++;
 	}
-	while (**args == '-' || **args == '0' || isspace(**args))
+	while (**args == '-' || **args == '0' || ft_isspace(**args))
 		(*args)++;
 	return (flag);
 }
 
-static int ft_parse_width(char **args, va_list ap)
+static int	ft_parse_width(const char **args, va_list ap)
 {
 	int	width;
 
 	width = 0;
 	if (**args == '*')
 		width = va_arg(ap, int);
-	else if (isdigit(**args))
-		width = atoi(*args);
-	while (isdigit(**args) || **args == '*')
+	else if (ft_isdigit(**args))
+		width = ft_atoi(*args);
+	while (ft_isdigit(**args) || **args == '*')
 		(*args)++;
 	return (width);
 }
 
-static int	ft_parse_precision(char **args, va_list ap)
+static int	ft_parse_precision(const char **args, va_list ap)
 {
 	int	prec;
 
-	prec = 0;
+	prec = -1;
 	if (**args == '.')
 		(*args)++;
 	else
-		return (0);
+		return (prec);
 	if (**args == '*')
 		prec = va_arg(ap, int);
-	else if (isdigit(**args))
-		prec = atoi(*args);
-	while (isdigit(**args) || **args == '*')
+	else if (ft_isdigit(**args))
+		prec = ft_atoi(*args);
+	while (ft_isdigit(**args) || **args == '*')
 		(*args)++;
 	return (prec);
 }
@@ -64,18 +59,16 @@ static int	ft_parse_precision(char **args, va_list ap)
 t_opts	*ft_parse_args(const char **args, va_list ap)
 {
 	t_opts	*opts;
-	char	opt;
-	int		argc;
 
-	//тут придется перелопатить все, чтобы функция принимала
-	//поинтер на часть структуры, а возвращала 0 или -1
-	argc = 0;
 	opts = (t_opts*)malloc(sizeof(t_opts));
 	opts->flag = ft_parse_flag(args);
 	opts->width = ft_parse_width(args, ap);
 	if (opts->width < 0)
+	{
+		opts->width = -opts->width;
 		opts->flag = '-';
+	}
 	opts->precision = ft_parse_precision(args, ap);
-	opts->type = **args; //ptr -> type
+	opts->type = **args;
 	return (opts);
 }

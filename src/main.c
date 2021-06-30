@@ -4,6 +4,7 @@
 int main(void)
 {
 	//ft_printf("%x\n",12341234);
-	printf("%-       20i\n", 11);
+
+	printf("%*i\ni\n", 0, 165);
 	return (0);
 }
