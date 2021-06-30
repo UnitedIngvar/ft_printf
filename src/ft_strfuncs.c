@@ -54,3 +54,10 @@ void	ft_printP(void *arg, char *base, size_t *counter)
 		*counter += 3;
 	}
 }
+
+void	ft_super_putchar(size_t *counter, const char *format)
+{
+	write(1, format, 1);
+	*counter += 1;
+	format++;
+}

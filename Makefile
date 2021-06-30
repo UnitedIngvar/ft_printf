@@ -1,4 +1,5 @@
-SRCS		=		src/ft_printf.c src/ft_strfuncs.c src/ft_uItoa.c src/ft_parse.args.c
+SRCS		=		src/ft_parse_args.c src/ft_printf.c src/ft_strfuncs.c src/ft_uItoa.c \
+					src/ft_make_space.c
 
 OBJS		=		${SRCS:.c=.o}
 
@@ -28,11 +29,10 @@ $(NAME):		${LIBFT} ${OBJS}
 
 all:			$(NAME)
 
-
 clean:	
 		${RM} ${OBJS} ${NAME}
 
-$(LIBFT): 		$(LIBFT)
+$(LIBFT):
 				make -C libft
 
 .PHONY: all clean fclean re $(LIBFT)
