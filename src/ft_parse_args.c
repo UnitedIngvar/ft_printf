@@ -1,9 +1,4 @@
-//если он видит лишний аргумент, он пишет все оставшееся текстом ->
-//printf("str: %-0**i\n"); ->
-//out: *i
-//должен оставнавливать указатель там, где произошло говно какое-то
-
-static char	ft_parse_flag(char **args)
+static char	ft_parse_flag(const char **args)
 {
 	char	flag;
 
@@ -29,7 +24,7 @@ static char	ft_parse_flag(char **args)
 	return (flag);
 }
 
-static int	ft_parse_width(char **args, va_list ap)
+static int	ft_parse_width(const char **args, va_list ap)
 {
 	int	width;
 
@@ -43,7 +38,7 @@ static int	ft_parse_width(char **args, va_list ap)
 	return (width);
 }
 
-static int	ft_parse_precision(char **args, va_list ap)
+static int	ft_parse_precision(const char **args, va_list ap)
 {
 	int	prec;
 
