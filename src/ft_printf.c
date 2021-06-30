@@ -12,8 +12,10 @@ static int	ft_xsX(t_opts *opts, va_list ap, size_t *counter)
 	}
 	else if (opts->type == 's')
 	{
-		strnum = ft_make_space(opts, va_arg(ap, char *));
+		strnum = ft_make_field(opts, va_arg(ap, char *));
+		printf("COUNTER BEFORE = %lu\n",*counter);
 		*counter += ft_strlen(strnum);
+		printf("\n%lu counter AFTER\n",*counter);
 		ft_printstr(strnum);
 		free(strnum);
 		return (1);
@@ -82,6 +84,7 @@ int	ft_printf(const char *format, ...)
 		}
 		else
 			ft_super_putchar(&counter, format);
+		format++;
 	}
 	va_end(ap);
 	return (counter);

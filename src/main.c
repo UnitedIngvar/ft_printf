@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "../includes/ft_printf.h"
+#include "ft_printf.c"
 int main(void)
 {
-	//ft_printf("%x\n",12341234);
-
-	printf("%*i\ni\n", 0, 165);
+	int i = ft_printf("%s","0");
+	printf("\ni = %i",i);
 	return (0);
 }
