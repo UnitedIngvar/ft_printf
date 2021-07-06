@@ -1,5 +1,5 @@
 SRCS		=		src/ft_parse_args.c src/ft_printf.c src/ft_strfuncs.c src/ft_uItoa.c \
-					src/ft_make_field.c
+					src/ft_make_field.c src/ft_char_to_str src/ft_print_c.c
 
 OBJS		=		${SRCS:.c=.o}
 
@@ -29,7 +29,7 @@ $(NAME):		${LIBFT} ${OBJS}
 
 all:			$(NAME)
 
-clean:	
+clean:
 		${RM} ${OBJS} ${NAME}
 
 $(LIBFT):

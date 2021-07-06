@@ -49,8 +49,7 @@ static int	ft_cdi(t_opts *opts, va_list ap, size_t *counter)
 
 	if (opts->type == 'c')
 	{
-		*counter += 1;
-		ft_putchar_fd(va_arg(ap, int), 1);
+		*counter += ft_print_c(va_arg(ap, int), opts);
 		return (1);
 	}
 	else if (opts->type == 'd' || opts->type == 'i')
