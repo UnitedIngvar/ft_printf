@@ -1,13 +1,13 @@
 #include "../includes/ft_printf.h"
 
-void	ft_printstr(char *str)
+void	ft_printstr(char *str, t_opts *opts)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (i < opts->width)
 	{
-		write(1, &(str[i]), 1);
+		write(1, str + i, 1);
 		i++;
 	}
 }

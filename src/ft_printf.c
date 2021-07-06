@@ -50,7 +50,6 @@ static int	ft_cdi(t_opts *opts, va_list ap, size_t *counter)
 	if (opts->type == 'c')
 	{
 		*counter += ft_print_c(va_arg(ap, int), opts);
-		printf("\naskdoaksdop %lu\n",*counter);
 		return (1);
 	}
 	else if (opts->type == 'd' || opts->type == 'i')

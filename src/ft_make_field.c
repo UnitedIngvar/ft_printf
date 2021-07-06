@@ -1,10 +1,11 @@
-static void	ft_place_spaces(t_opts *opts, char *str)
+static ssize_t	ft_place_spaces(t_opts *opts, char *str)
 {
 	ssize_t	i;
 
 	i = 0;
 	while (i < opts->width)
 		str[i++] = ' ';
+	return (i);
 }
 
 //function to allocate space for and return
@@ -17,11 +18,12 @@ char	*ft_make_field(t_opts *opts, char *str, int *len)
 	strlen = ft_strlen(str);
 	if (strlen > opts->width)
 		opts->width = strlen;
+	if (opts->width == 0)
+		opts->width = 1;
 	res = (char *)malloc((opts->width + 1) * sizeof(*res));
 	res[opts->width] = '\0';
 	if (!res)
 		return (NULL);
-	*len = ft_strlen(res);
-	ft_place_spaces(opts, str);
+	*len += ft_place_spaces(opts, res);
 	return (res);
 }

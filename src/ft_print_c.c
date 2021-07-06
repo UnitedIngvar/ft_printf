@@ -15,11 +15,10 @@ int	ft_print_c(char c, t_opts *opts)
 
 	len = 0;
 	res = ft_make_field(opts, ft_char_to_str(c), &len);
-	printf("qwe %i", len);
-	if (opts->flag == '-')
+	if (opts->flag != '-')
 		res[len - 1] = c;
 	else
 		res[0] = c;
-	ft_printstr(res);
+	ft_printstr(res, opts);
 	return (len);
 }
