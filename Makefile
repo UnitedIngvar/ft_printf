@@ -1,5 +1,5 @@
 SRCS		=		src/ft_parse_args.c src/ft_printf.c src/ft_strfuncs.c src/ft_uItoa.c \
-					src/ft_make_field.c src/ft_char_to_str src/ft_print_c.c
+					src/ft_make_field.c src/ft_print_c.c
 
 OBJS		=		${SRCS:.c=.o}
 
@@ -25,7 +25,7 @@ ARFLAGS		=		rc
 $(NAME):		${LIBFT} ${OBJS}
 				ar rc libft/libft.a ${OBJS}
 				cp libft/libft.a ${NAME}
-				${CC} src/main.c ${NAME}
+				${CC} src/main.c ${NAME} -include ${HEADER}
 
 all:			$(NAME)
 

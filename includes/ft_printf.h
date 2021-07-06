@@ -22,6 +22,5 @@ t_opts	*ft_parse_args(const char **args, va_list ap);
 char	*ft_make_field(t_opts *opts, char *str, int *len);
 void	ft_super_putchar(size_t *counter, const char *format);
 int		ft_print_c(char c, t_opts *opts);
-char	*ft_char_to_str(char c);
 
 #endif

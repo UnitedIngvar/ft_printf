@@ -3,7 +3,7 @@
 
 int main(void)
 {
-	char b = 99;
-	printf("\ni =%010.5i", b);
+	int i = ft_printf("%10c",'0');
+	printf("\ni = %i",i);
 	return (0);
 }

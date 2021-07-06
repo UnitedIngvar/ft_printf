@@ -21,7 +21,7 @@ char	*ft_make_field(t_opts *opts, char *str, int *len)
 	res[opts->width] = '\0';
 	if (!res)
 		return (NULL);
-	ft_place_spaces(opts, str);
 	*len = ft_strlen(res);
+	ft_place_spaces(opts, str);
 	return (res);
 }

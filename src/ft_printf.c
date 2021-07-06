@@ -1,6 +1,6 @@
 static int	ft_xsX(t_opts *opts, va_list ap, size_t *counter)
 {
-	char	*strnum;
+//	char	*strnum;
 
 	if (opts->type == 'x' || opts->type == 'X')
 	{
@@ -12,13 +12,13 @@ static int	ft_xsX(t_opts *opts, va_list ap, size_t *counter)
 	}
 	else if (opts->type == 's')
 	{
-		strnum = ft_make_field(opts, va_arg(ap, char *));
-		printf("COUNTER BEFORE = %lu\n",*counter);
-		*counter += ft_strlen(strnum);
-		printf("\n%lu counter AFTER\n",*counter);
-		ft_printstr(strnum);
-		free(strnum);
-		return (1);
+	//	//strnum = ft_make_field(opts, va_arg(ap, char *), (int)*counter);
+	//	printf("COUNTER BEFORE = %lu\n",*counter);
+	//	*counter += ft_strlen(strnum);
+	//	printf("\n%lu counter AFTER\n",*counter);
+	//	ft_printstr(strnum);
+	//	free(strnum);
+	//	return (1);
 	}
 	return (0);
 }
@@ -50,6 +50,7 @@ static int	ft_cdi(t_opts *opts, va_list ap, size_t *counter)
 	if (opts->type == 'c')
 	{
 		*counter += ft_print_c(va_arg(ap, int), opts);
+		printf("\naskdoaksdop %lu\n",*counter);
 		return (1);
 	}
 	else if (opts->type == 'd' || opts->type == 'i')
